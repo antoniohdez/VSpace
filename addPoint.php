@@ -8,7 +8,6 @@
   	{
   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
   	}
-
 	if(mysqli_query($con,"INSERT INTO points (feeling, latitude, longitude) VALUES ('$f', '$lat', '$lng')"))
 	{
 		printf("Punto registrado!");
