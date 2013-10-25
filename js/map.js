@@ -4,6 +4,7 @@ var feeling = "";
 var latitude = "";
 var longitude = "";
 var marker;
+
 function initialize() {
 	//myLatlng = new google.maps.LatLng(-33.877, 151.244);
 	var mapOptions = {
@@ -58,11 +59,8 @@ function handleNoGeolocation(errorFlag) {
 	};
 	var infowindow = new google.maps.InfoWindow(options);
 	map.setCenter(options.position);
-	latitude = myLatlng.lat()
-    longitude = myLatlng.lng();
+	latitude = myLatlng.lat();
+  longitude = myLatlng.lng();
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-
-
-

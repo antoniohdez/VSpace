@@ -15,9 +15,6 @@
 		<script src="js/html5shiv.js"></script>
 		<script src="js/respond.min.js"></script>
 	<![endif]-->
-
-
-
 </head>
 <body>
 	<div class="navbar navbar-inverse navbar-fixed-top">
@@ -47,7 +44,6 @@
 			</div><!--/.nav-collapse -->
 		</div>
 	</div><!--/.navbar -->
-
 	<!-- Contenido -->
     <div class="container">
     	<div class="row col-md-8 col-md-offset-2 contenedor">
@@ -93,8 +89,7 @@
 		    </div>
 	    </div>
 	</div>
-	    <!--/Contenido-->
-	
+	<!--/Contenido-->
     <!-- Bootstrap core JavaScript -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -123,22 +118,21 @@
 		else{
 			var parametros = {
 				"feeling" : feeling,
-				"latitude" : marker.getPosition().lat(),
-				"longitude" : marker.getPosition().lng()
+				"latitude" : latitude,
+				"longitude" : longitude
 			}
 			$.ajax({
 	            data: parametros,
 	            url: 'addPoint.php',
 	            type: 'post',
 	            beforeSend: function () {
-	                $("#button").html("Procesando...");
+	                $("#button").html("Saving point...");
 	            },
 	            success:  function (response) {
 	                $("#button").html("Done!");
 	                alert(response);
 	            }
 	        });
-
 		}
 	}
 	</script>
