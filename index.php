@@ -121,7 +121,6 @@
 			$("#error").show();
 			$("#error").html("We couldn't find your location.");
 			$("html, body").animate({ scrollTop: 0 }, 600);
-			//alert("We couldn't find your location.");
 		}
 		else{
 			var parametros = {
