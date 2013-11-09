@@ -2,7 +2,7 @@
 	require_once("layout.php");
 
 	if(!isset($_SESSION["name"])){
-		//header('Location: login.php?err=2');
+		header('Location: login.php?err=2');
 	} 
 ?>
 <!DOCTYPE html>
