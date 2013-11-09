@@ -1,14 +1,20 @@
 <?php
-        require_once("driver.php");
-        $id = "";
-        if(!isset($_GET["id"])){
-                header('Location: index.php');
-        } 
-        $id = $_GET["id"];
-        $driver = new dbDriver();
-        $data = $driver->getTag($id);
-        $name = $data["user_name"];
-        $feeling = $data["feeling"];
+    require_once("driver.php");
+    require_once("layout.php");
+    $driver = new dbDriver();
+    if(!isset($_GET["id"])){
+        header('Location: index.php');
+        exit();
+    } 
+    $id = $_GET["id"];
+    if(!isset($_SESSION["name"])){
+		header('Location: login.php?err=2&id='.$id);
+		exit();
+	} 
+    $driver = new dbDriver();
+    $data = $driver->getTag($id);
+    $name = $data["user_name"];
+    $feeling = $data["feeling"];
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +24,7 @@
         
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <title>
-        Nooply
+        Gifts : Nooply
     </title>
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.css" rel="stylesheet">
@@ -30,26 +36,9 @@
         <![endif]-->
 </head>
 <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                        <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand" href="index.php">Nooply</a>
-                        </div>
-                        <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                                        <li class="active"><a href="index.php">Home</a></li>
-                                </ul>            
-                
-                        </div><!--/.nav-collapse -->
-                </div>
-        </div>
+        
         <!--/.navbar -->
-
+        <?php print_header(); ?>
         <!-- Contenido -->
     <div class="container">
             <div class="row col-md-8 col-md-offset-2 contenedor">
@@ -61,7 +50,7 @@
                             <div id="container-info" class="col-md-12 center-content">
                                     <div class="center-content text">
                                     <h4>
-                                            Your friend <b><?php echo $name; ?></b> is feeling <b><?php echo $feeling; ?></b>, give him/her a gift!
+                                            Your friend, <b><?php echo $name; ?></b>, is feeling <b><?php echo $feeling; ?></b>, give him/her a gift!
                                     </h4>
                                     </div>
                             </div>

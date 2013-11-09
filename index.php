@@ -5,6 +5,7 @@
     $driver = new dbDriver();
 	if(!isset($_SESSION["name"])){
 		header('Location: login.php?err=2');
+		exit();
 	} 
 ?>
 <!DOCTYPE html>
@@ -115,7 +116,6 @@
 			$("#error").show();
 			$("#error").html("Select an I\'m feeling option.");
 			$("html, body").animate({ scrollTop: 0 }, 600);
-			//alert("Select an \"I'm feeling\" option.");
 		}
 		else if(latitude === "" || longitude === ""){
 			$("#error").show();

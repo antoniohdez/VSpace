@@ -1,13 +1,13 @@
 <?php 
     require_once("driver.php");
     require_once("layout.php");
-
     $driver = new dbDriver();
     $err = isset($_GET["err"]) ? $_GET["err"] : 0;
+    $id  = $_GET["id"];
     $email = '';
     $password = '';
     if (isset($_GET["submit"])) {
-    	$driver->login($_POST["email"], $_POST["password"]);
+    	$driver->login($_POST["email"], $_POST["password"], $id);
     }
 ?>
 
@@ -68,7 +68,7 @@
     <?php print_header_login(); ?>
 
 
-	<form action="login.php?submit" enctype="multipart/form-data" id="login_form" class="form-horizontal" method="POST">
+	<form action="login.php?submit&id=<?php echo $id;?>" enctype="multipart/form-data" id="login_form" class="form-horizontal" method="POST">
         <h2 class="text-center">Nooply Login</h2>
 			<?php
 	switch ($err) {

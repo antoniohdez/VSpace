@@ -43,7 +43,7 @@ class dbDriver{
 		return $array;
 	}
 
-	function login($user, $password){
+	function login($user, $password, $id){
 		//$password = md5($password);
 		$query = mysqli_query($this->conexion, "SELECT * from users where email='$user'");			
 		$row = mysqli_fetch_array($query);
@@ -51,11 +51,19 @@ class dbDriver{
 			$_SESSION["name"] = $row["name"];
 			$_SESSION["email"] = $row["email"];
 			$_SESSION["user_id"] = $row["user_id"];
-			header('Location: index.php');
+			if(intval($id) > 0){
+				header('Location: gift.php?id='.intval($id));
+				exit();
+			} else {
+				header('Location: index.php');
+				exit();
+			}
 		} else {
 			header('Location: login.php?err=1');
+			exit();
 		}
 	}
+
 	function addAccount($user, $email, $password){
 		mysqli_query($this->conexion, "INSERT INTO users (name, email, password) VALUES ('$user', '$email', '$password')");
 	}
