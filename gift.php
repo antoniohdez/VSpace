@@ -1,3 +1,9 @@
+<?php
+	if(!isset($_GET["id"])){
+		header('Location: index.php');
+	} 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
