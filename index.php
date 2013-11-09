@@ -7,6 +7,7 @@
 		header('Location: login.php?err=2');
 		exit();
 	} 
+	$id = $_SESSION["user_id"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,6 +73,9 @@
 						    <div class="col-lg-10 col-lg-offset-1">
 						        <input type="text" class="form-control" id="message" placeholder="Message">
 						    </div>
+						    <div class="col-lg-10 col-lg-offset-1">
+						        <input type="text" value="<?php echo $id?>" style="display: none;" class="form-control"  id="user_id">
+						    </div>
 						</div>
 			    	</div>
 			    </div>
@@ -103,7 +107,6 @@
 	$("#success").hide();
 	//Obtiene la imagen seleccionada
 	$(document).ready(function(){
-		
 		$(".image").click(function(){
 		$(".image-selected").removeClass("image-selected");
 		$(this).addClass("image-selected");
@@ -114,7 +117,7 @@
     function sendForm(){
 		if(feeling === ""){
 			$("#error").show();
-			$("#error").html("Select an I\'m feeling option.");
+			$("#error").html("Select a feeling.");
 			$("html, body").animate({ scrollTop: 0 }, 600);
 		}
 		else if(latitude === "" || longitude === ""){
@@ -127,7 +130,8 @@
 				"feeling" : feeling,
 				"latitude" : marker.getPosition().lat(),
 				"longitude" : marker.getPosition().lng(),
-				"message" : $("#message").val()
+				"message" : $("#message").val(),
+				"user_id" : $("#user_id").val()
 			}
 			$.ajax({
 	            data: parametros,
@@ -138,18 +142,17 @@
 	            },
 	            success:  function (response) {
 	                $("#button").html("Done!");
-	                if(response == "error"){
-
-	                	$("#success").hide();
-	                	$("#error").html("Error");
-	                	$("#error").show();
-	                	$("html, body").animate({ scrollTop: 0 }, 600);
-	                }
-	                else if(response == "success"){
+	                if(response == "success"){
 	                	$(".image-selected").removeClass("image-selected");
 	                	$("#message").val("");
 	                	$("#error").hide();
 	                	$("#success").show();
+	                	$("html, body").animate({ scrollTop: 0 }, 600);
+	                }
+	                else {
+	                	$("#success").hide();
+	                	$("#error").html(response);
+	                	$("#error").show();
 	                	$("html, body").animate({ scrollTop: 0 }, 600);
 	                }
 	            }

@@ -5,7 +5,8 @@
 
         $gift = $_POST['gift'];
         $msg = $_POST['message'];
-        $user = $_SESSION["user_id"];
+        $user = $_POST["user_id"];
+        $tag = $_POST["id"];
 
-        $driver->addGift($gift, $msg, $user);
+        $driver->addGift($gift, $msg, $user, $tag);
 ?>

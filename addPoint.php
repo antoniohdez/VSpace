@@ -7,7 +7,7 @@
         $lat = $_POST['latitude'];
         $lng = $_POST['longitude'];
         $msg = $_POST['message'];
-        $user = $_SESSION["user_id"];
+        $user = $_POST['user_id'];
 
         $driver->addTag($feeling, $lat, $lng, $msg, $user);
 ?>

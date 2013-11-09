@@ -9,7 +9,7 @@
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$query = mysqli_query($con,"SELECT name FROM users where user_id=".$row["user_id"].";");
 			$user = mysqli_fetch_array($query);
-			$array[] = array("id" => $row["id"], "user" => $user["name"], "gift" => $row["gift"], "message" => $row["message"]);
+			$array[] = array("id" => $row["id"], "user" => $user["name"], "gift" => $row["gift"], "message" => $row["message"], "tag" => $row["point_id"]);
 		}
 		printf(json_encode(array("dataArray" => $array)));
 	}
