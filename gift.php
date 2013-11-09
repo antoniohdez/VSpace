@@ -1,5 +1,10 @@
 <?php
 	require_once("driver.php");
+	require_once("layout.php");
+
+	if(!isset($_SESSION["id"])){
+		header('Location: login.php?err=2');
+	} 
 	$id = "";
 	if(!isset($_GET["id"])){
 		header('Location: index.php');
@@ -18,7 +23,7 @@
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
-        Nooply
+        Gifts : Nooply
     </title>
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -30,26 +35,8 @@
 	<![endif]-->
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.php">Nooply</a>
-			</div>
-			<div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-					<li class="active"><a href="index.php">Home</a></li>
-				</ul>            
-                
-			</div><!--/.nav-collapse -->
-		</div>
-	</div>
 	<!--/.navbar -->
-
+	<?php print_header() ?>
 	<!-- Contenido -->
     <div class="container">
     	<div class="row col-md-8 col-md-offset-2 contenedor">

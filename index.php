@@ -1,3 +1,10 @@
+<?php
+	require_once("layout.php");
+
+	if(!isset($_SESSION["name"])){
+		//header('Location: login.php?err=2');
+	} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +12,7 @@
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
-        Nooply
+        Feelings : Nooply
     </title>
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -17,44 +24,18 @@
 	<![endif]-->
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.php">Nooply</a>
-			</div>
-			<div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-				</ul>            
-                <ul class="nav navbar-nav navbar-right">
-  					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Option 1</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li><a href="#">Log out</a></li>
-                        </ul>
-                    </li>
-				</ul> 
-			</div><!--/.nav-collapse -->
-		</div>
-	</div><!--/.navbar -->
+	<!--/.navbar -->
+	<?php print_header() ?>
 	<!-- Contenido -->
     <div class="container">
     	<div class="row col-md-8 col-md-offset-2 contenedor">
 	    	<div class="row">
 	    		<div id="success" class="alert alert-success" style="display:none">
-	    			Punto registrado
+	    			<strong>Great!</strong> You have successfully registered a feeling.
 	    		</div>
 	    		<div id="error" class="alert alert-danger" style="display:none">
-	    			Error
+	    			<strong>Oh snap!</strong> Something went wrong.
 	    		</div>
-
 
 	    		<div class="center-content title">
 	    			I'm feeling...
@@ -161,7 +142,6 @@
 	                	$("#error").hide();
 	                	$("#success").show();
 	                }
-	                //alert(response);
 	            }
 	        });
 		}

@@ -45,5 +45,18 @@ class dbDriver{
 		return $array;
 	}
 
+	function login($user, $password){
+		//$password = md5($password);
+		$query = mysqli_query($this->conexion, "SELECT * from users where email='$user'");			
+		$row = mysqli_fetch_array($query);
+		if($row['password'] == $password){
+			$_SESSION["name"] = $row["name"];
+			$_SESSION["emain"] = $row["email"];
+			$_SESSION["user_id"] = $row["user_id"];
+			header('Location: index.php');
+		} else {
+			header('Location: login.php?err=1');
+		}
+	}
 }
 ?>

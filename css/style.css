@@ -36,8 +36,8 @@ span.image{
 }
 
 span.image-selected img, span.image img{
-	height: 40px;
-	width: 40px;
+	height: 70px;
+	width: 70px;
 }
 
 span.image-selected{
