@@ -1,7 +1,14 @@
 <?php
+	require_once("driver.php");
+	$id = "";
 	if(!isset($_GET["id"])){
 		header('Location: index.php');
 	} 
+	$id = $_GET["id"];
+	$driver = new dbDriver();
+	$data = $driver->getTag($id);
+	$name = $data["user_name"];
+	$feeling = $data["feeling"];
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +42,7 @@
 			</div>
 			<div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
 				</ul>            
                 
 			</div><!--/.nav-collapse -->
@@ -50,25 +57,33 @@
 	    		<div class="center-content title">
 	    			Give a gift to your friend...
 	    		</div>
+	    		<br>
+	    		<div id="container-info" class="col-md-12 center-content">
+	    			<div class="center-content text">
+	    			<h4>
+	    				Your friend <b><?php echo $name; ?></b> is feeling <b><?php echo $feeling; ?></b>, give him/her a gift!
+	    			</h4>
+	    			</div>
+	    		</div>
 		    	<div id="container-images" class="col-md-12 center-content">
 		    		<span class="width-auto">
 			    		<span id="beer" class="image">
-							<img src="img/images/happy.png" alt="Beer">
+							<img src="img/images/Beer.png" alt="Beer">
 			    		</span>
-			    		<span id="heart" class="image">
-			    			<img src="img/images/sad.png" alt="Heart">
+			    		<span id="love" class="image">
+			    			<img src="img/images/Love.png" alt="Love">
 			    		</span>
 			    		<span id="icecream" class="image">
-			    			<img src="img/images/annoyed.png" alt="Ice cream">
+			    			<img src="img/images/Icecream.png" alt="Icecream">
 			    		</span>
 			    		<span id="like" class="image">
-			    			<img src="img/images/bored.png" alt="Like">
+			    			<img src="img/images/Like.png" alt="Like">
 			    		</span>
 			    		<span id="coffee" class="image">
-			    			<img src="img/images/tired.png" alt="Coffee">
+			    			<img src="img/images/Coffee.png" alt="Coffee">
 			    		</span>
 			    		<span id="hug" class="image">
-			    			<img src="img/images/tired.png" alt="Hug">
+			    			<img src="img/images/Hug.png" alt="Hug">
 			    		</span>
 			    		
 		    		</span>
@@ -85,12 +100,10 @@
 						</div>
 			    	</div>
 			    </div>
-	    	<div class="row">
-	    		<!-- -->	
-		    </div>
+	    	
 		    <div class="row">
 		    	<div class="col-md-4 col-md-offset-4">
-		    		<button id="button" type="button" class="btn btn-primary myButton" onclick="sendForm()">Done!</button>
+		    		<button id="button" type="button" class="btn btn-primary myButton" onclick="sendForm()">Send gift!</button>
 		    	</div>
 		    </div>
 	    </div>
@@ -110,33 +123,28 @@
 		$(".image").click(function(){
 		$(".image-selected").removeClass("image-selected");
 		$(this).addClass("image-selected");
-		feeling = $(this).attr("id");
+		gift = $(this).attr("id");
 		});
 	});
 
     function sendForm(){
-		if(feeling === ""){
-			alert("Select an \"I'm feeling\" option.");
-		}
-		else if(latitude === "" || longitude === ""){
-			alert("We couldn't find your location.");
+		if(gift === ""){
+			alert("Select an \"gift\" option.");
 		}
 		else{
 			var parametros = {
-				"feeling" : feeling,
-				"latitude" : marker.getPosition().lat(),
-				"longitude" : marker.getPosition().lng(),
+				"gift" : gift,
 				"message" : $("#message").val()
 			}
 			$.ajax({
 	            data: parametros,
-	            url: 'addPoint.php',
+	            url: 'addGift.php',
 	            type: 'post',
 	            beforeSend: function () {
-	                $("#button").html("Saving point...");
+	                $("#button").html("Saving gift...");
 	            },
 	            success:  function (response) {
-	                $("#button").html("Done!");
+	                $("#button").html("Send gift!");
 	                alert(response);
 	            }
 	        });
