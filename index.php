@@ -5,7 +5,7 @@
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
-        ViSpace
+        Nooply
     </title>
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -25,7 +25,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.php">ViSpace</a>
+				<a class="navbar-brand" href="index.php">Nooply</a>
 			</div>
 			<div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
@@ -85,9 +85,7 @@
 			    </div>
 	    	<div class="row">
 	    		<div class="col-md-12">
-	    			<span>
-	    				You are here:
-	    			</span>
+	    			<br>
 	    			<div id="map" style="height: 400px;" />
 
 	    		</div>		
