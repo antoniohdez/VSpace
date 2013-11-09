@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.4
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 10-11-2013 a las 02:04:40
--- Versión del servidor: 5.1.44
--- Versión de PHP: 5.3.1
+-- Host: 127.0.0.1
+-- Generation Time: Nov 09, 2013 at 06:05 AM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -16,13 +17,36 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de datos: `VSpace`
+-- Database: `vspace`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `points`
+-- Table structure for table `gifts`
+--
+
+CREATE TABLE IF NOT EXISTS `gifts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gift` varchar(128) NOT NULL,
+  `message` varchar(512) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `gifts`
+--
+
+INSERT INTO `gifts` (`id`, `gift`, `message`, `user_id`) VALUES
+(1, '', 'Lets drink!', 1),
+(2, 'beer', 'Lets drink!', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `points`
 --
 
 CREATE TABLE IF NOT EXISTS `points` (
@@ -31,23 +55,49 @@ CREATE TABLE IF NOT EXISTS `points` (
   `latitude` float NOT NULL,
   `longitude` float NOT NULL,
   `message` varchar(140) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
--- Volcar la base de datos para la tabla `points`
+-- Dumping data for table `points`
 --
 
-INSERT INTO `points` (`id`, `feeling`, `latitude`, `longitude`, `message`) VALUES
-(1, 'happy', 30, 132, NULL),
-(2, 'happy', 21, -103, NULL),
-(3, 'happy', 20.7347, -103.457, NULL),
-(4, 'happy', 20.7347, -103.457, NULL),
-(5, 'happy', 20.7347, -103.457, NULL),
-(6, 'happy', 20.7348, -103.457, NULL),
-(7, 'happy', 20.5639, -103.154, NULL),
-(8, 'tired', 21.0443, -104.369, NULL),
-(9, 'happy', 20.7347, -103.457, NULL),
-(10, 'tired', 20.7347, -103.457, NULL),
-(11, 'bored', 20.7347, -103.457, NULL),
-(12, 'sad', 20.7564, -103.442, 'dfdcgdg');
+INSERT INTO `points` (`id`, `feeling`, `latitude`, `longitude`, `message`, `user_id`) VALUES
+(15, 'happy', 20.3696, -102.769, 'I feel god!', 1),
+(16, 'happy', 20.3696, -102.769, '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `email`) VALUES
+(1, 'Eros Espinola Gonzalez', 'eros.espinola.gonzalez@gmail.com');
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `gifts`
+--
+ALTER TABLE `gifts`
+  ADD CONSTRAINT `gifts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
