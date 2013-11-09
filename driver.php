@@ -43,6 +43,17 @@ class dbDriver{
 		return $array;
 	}
 
+	function getUser($id){
+		$query = mysqli_query($this->conexion, "SELECT * FROM users WHERE id='$id'");
+		$row=mysqli_fetch_array($query);
+		$array = array(
+			"user_id" => $row['user_id'],
+			"name" => $row['name'],
+			"email" => $row['email'],
+		);
+		return $array;
+	}
+
 	function login($user, $password, $id){
 		$password = md5($password);
 		$query = mysqli_query($this->conexion, "SELECT * from users where email='$user'");			

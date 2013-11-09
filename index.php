@@ -41,7 +41,7 @@
 	    		</div>
 
 	    		<div class="center-content title">
-	    			I'm feeling...
+	    			How are you feeling, <?php echo $_SESSION["name"]; ?>?
 	    		</div>
 		    	<div id="container-images" class="col-md-12 center-content">
 		    		<span class="width-auto">
@@ -51,11 +51,11 @@
 			    		<span id="sad" class="image">
 			    			<img src="img/images/sad.png" alt="Sad">
 			    		</span>
-			    		<span id="annoyed" class="image">
-			    			<img src="img/images/annoyed.png" alt="Annoyed">
+			    		<span id="excited" class="image">
+			    			<img src="img/images/excited.png" alt="Excited">
 			    		</span>
-			    		<span id="bored" class="image">
-			    			<img src="img/images/bored.png" alt="Bored">
+			    		<span id="embarrassed" class="image">
+			    			<img src="img/images/embarrassed.png" alt="Embarrassed">
 			    		</span>
 			    		<span id="tired" class="image">
 			    			<img src="img/images/tired.png" alt="Tired">
