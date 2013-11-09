@@ -44,7 +44,7 @@ function print_header_login() {
       <div class="collapse navbar-collapse">       
         <ul class="nav navbar-nav navbar-right">
             <ul class="nav navbar-nav">
-              <li><a href="sigin.php">Sign in</a></li>
+              <li><a href="signIn.php">Sign in</a></li>
             </ul>
         </ul> 
       </div><!--/.nav-collapse -->
