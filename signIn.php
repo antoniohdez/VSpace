@@ -46,39 +46,39 @@
 	</div><!--/.navbar -->
 	<!-- Contenido -->
     <div class="container">
-    	<div class="row col-md-8 col-md-offset-2 contenedor">
+    	<div class="row col-md-6 col-md-offset-3 contenedor">
 	    	<div class="row">
 	    		<div class="center-content">
-					<h3>Crear cuenta</h3>
+					<h3>Create account</h3>
 				</div>
-	    		<form class="form-horizontal" role="form" action="addAccount.php" method="post">
+	    		<form id="signIn" class="form-horizontal" role="form" action="addAccount.php" method="post">
 					<div class="form-group">
-					    <label for="name" class="col-md-3 control-label">Nombre:</label>
+					    <label for="name" class="col-md-3 control-label">Name:</label>
 					    <div class="col-md-9">
-					    	<input type="text" name="name" class="form-control" id="name" >
+					    	<input type="text" name="name" class="form-control" id="name" required>
 					    </div>
 					</div>
 					<div class="form-group">
-					    <label for="email" class="col-md-3 control-label">Correo electrónico:</label>
+					    <label for="email" class="col-md-3 control-label">Email:</label>
 					    <div class="col-md-9">
-					    	<input type="text" name="email" class="form-control" id="email" >
+					    	<input type="text" name="email" class="form-control" id="email" required>
 					    </div>
 					</div>
 					<div class="form-group">
-					    <label for="password" class="col-md-3 control-label">Contraseña:</label>
+					    <label for="password" class="col-md-3 control-label">Password:</label>
 					    <div class="col-md-9">
-					    	<input type="text" name="password" class="form-control" id="password" >
+					    	<input type="password" name="password" class="form-control" id="password" required >
 					    </div>
 					</div>
 					<div class="form-group">
-					    <label for="password2" class="col-md-3 control-label">Confirmar contraseña:</label>
+					    <label for="password2" class="col-md-3 control-label">Confirm password:</label>
 					    <div class="col-md-9">
-					    	<input type="text" name="password2" class="form-control" id="password2" >
+					    	<input type="password" name="password2" class="form-control" id="password2" required>
 					    </div>
 					</div>
 					<div class="form-group">
 						<div class="col-md-offset-3 col-md-9">
-					    	<button class="btn btn-primary signIn" type="submit">Crear cuenta</button>
+					    	<button class="btn btn-primary signIn" type="submit" onclick="validateEmail()">Create account</button>
 					    </div>
 					</div>
 				</form>
@@ -97,6 +97,18 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVgCfLPVEZGCXt7lMuuU-Q0jDrwfz6FtY&sensor=false">
     </script>
     <script type="text/javascript" src="js/map.js">
+    </script>
+    <script type="text/javascript">
+
+		function validateEmail() {
+		  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		  if(!regex.test($("#email").val())){
+			$("#email").attr("placeholder","Invalid email")
+			$("#email").val("");
+		  }else{
+			//$("#signIn").submit();	
+		  }
+		}
     </script>
 </body>
 </html>
