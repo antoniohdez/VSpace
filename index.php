@@ -1,6 +1,8 @@
 <?php
 	require_once("layout.php");
+	require_once("driver.php");
 
+    $driver = new dbDriver();
 	if(!isset($_SESSION["name"])){
 		header('Location: login.php?err=2');
 	} 

@@ -1,21 +1,12 @@
 <?php
-	require_once("driver.php");
 	require_once("layout.php");
+	require_once("driver.php");
 
-	if(!isset($_SESSION["id"])){
+    $driver = new dbDriver();
+	if(!isset($_SESSION["name"])){
 		header('Location: login.php?err=2');
 	} 
-	$id = "";
-	if(!isset($_GET["id"])){
-		header('Location: index.php');
-	} 
-	$id = $_GET["id"];
-	$driver = new dbDriver();
-	$data = $driver->getTag($id);
-	$name = $data["user_name"];
-	$feeling = $data["feeling"];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +14,7 @@
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
-        Gifts : Nooply
+        Feelings : Nooply
     </title>
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -41,36 +32,32 @@
     <div class="container">
     	<div class="row col-md-8 col-md-offset-2 contenedor">
 	    	<div class="row">
-	    		<div class="center-content title">
-	    			Give a gift to your friend...
+	    		<div id="success" class="alert alert-success" style="display:none">
+	    			<strong>Great!</strong> You have successfully registered a feeling.
 	    		</div>
-	    		<br>
-	    		<div id="container-info" class="col-md-12 center-content">
-	    			<div class="center-content text">
-	    			<h4>
-	    				Your friend <b><?php echo $name; ?></b> is feeling <b><?php echo $feeling; ?></b>, give him/her a gift!
-	    			</h4>
-	    			</div>
+	    		<div id="error" class="alert alert-danger" style="display:none">
+	    			<strong>Oh snap!</strong> Something went wrong.
+	    		</div>
+
+	    		<div class="center-content title">
+	    			I'm feeling...
 	    		</div>
 		    	<div id="container-images" class="col-md-12 center-content">
 		    		<span class="width-auto">
-			    		<span id="beer" class="image">
-							<img src="img/images/Beer.png" alt="Beer">
+			    		<span id="happy" class="image">
+							<img src="img/images/happy.png" alt="Happy">
 			    		</span>
-			    		<span id="love" class="image">
-			    			<img src="img/images/Love.png" alt="Love">
+			    		<span id="sad" class="image">
+			    			<img src="img/images/sad.png" alt="Sad">
 			    		</span>
-			    		<span id="icecream" class="image">
-			    			<img src="img/images/Icecream.png" alt="Icecream">
+			    		<span id="annoyed" class="image">
+			    			<img src="img/images/annoyed.png" alt="Annoyed">
 			    		</span>
-			    		<span id="like" class="image">
-			    			<img src="img/images/Like.png" alt="Like">
+			    		<span id="bored" class="image">
+			    			<img src="img/images/bored.png" alt="Bored">
 			    		</span>
-			    		<span id="coffee" class="image">
-			    			<img src="img/images/Coffee.png" alt="Coffee">
-			    		</span>
-			    		<span id="hug" class="image">
-			    			<img src="img/images/Hug.png" alt="Hug">
+			    		<span id="tired" class="image">
+			    			<img src="img/images/tired.png" alt="Tired">
 			    		</span>
 			    		
 		    		</span>
@@ -87,10 +74,16 @@
 						</div>
 			    	</div>
 			    </div>
-	    	
+	    	<div class="row">
+	    		<div class="col-md-12">
+
+	    			<div id="map" style="height: 400px; margin-top: 20px;" />
+
+	    		</div>		
+		    </div>
 		    <div class="row">
 		    	<div class="col-md-4 col-md-offset-4">
-		    		<button id="button" type="button" class="btn btn-primary myButton" onclick="sendForm()">Send gift!</button>
+		    		<button id="button" type="button" class="btn btn-primary myButton" onclick="sendForm()">Done!</button>
 		    	</div>
 		    </div>
 	    </div>
@@ -105,34 +98,52 @@
     <script type="text/javascript" src="js/map.js">
     </script>
     <script type="text/javascript">
+    $("#error").hide();
+	$("#success").hide();
 	//Obtiene la imagen seleccionada
 	$(document).ready(function(){
+		
 		$(".image").click(function(){
 		$(".image-selected").removeClass("image-selected");
 		$(this).addClass("image-selected");
-		gift = $(this).attr("id");
+		feeling = $(this).attr("id");
 		});
 	});
 
     function sendForm(){
-		if(gift === ""){
-			alert("Select an \"gift\" option.");
+		if(feeling === ""){
+			alert("Select an \"I'm feeling\" option.");
+		}
+		else if(latitude === "" || longitude === ""){
+			alert("We couldn't find your location.");
 		}
 		else{
 			var parametros = {
-				"gift" : gift,
+				"feeling" : feeling,
+				"latitude" : marker.getPosition().lat(),
+				"longitude" : marker.getPosition().lng(),
 				"message" : $("#message").val()
 			}
 			$.ajax({
 	            data: parametros,
-	            url: 'addGift.php',
+	            url: 'addPoint.php',
 	            type: 'post',
 	            beforeSend: function () {
-	                $("#button").html("Saving gift...");
+	                $("#button").html("Saving point...");
 	            },
 	            success:  function (response) {
-	                $("#button").html("Send gift!");
-	                alert(response);
+	                $("#button").html("Done!");
+	                if(response == "error"){
+
+	                	$("#success").hide();
+	                	$("#error").show();
+	                }
+	                else if(response == "success"){
+	                	$(".image-selected").removeClass("image-selected");
+	                	$("#message").val("");
+	                	$("#error").hide();
+	                	$("#success").show();
+	                }
 	            }
 	        });
 		}

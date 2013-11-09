@@ -1,14 +1,14 @@
 <?php 
-require_once("driver.php");
-require_once("layout.php");
+    require_once("driver.php");
+    require_once("layout.php");
 
-$driver = new dbDriver();
-$err = isset($_GET["err"]) ? $_GET["err"] : 0;
-$email = '';
-$password = '';
-if (isset($_GET["submit"])) {
-	$driver->login($_POST["email"], $_POST["password"]);
-}
+    $driver = new dbDriver();
+    $err = isset($_GET["err"]) ? $_GET["err"] : 0;
+    $email = '';
+    $password = '';
+    if (isset($_GET["submit"])) {
+    	$driver->login($_POST["email"], $_POST["password"]);
+    }
 ?>
 
 <!DOCTYPE html>

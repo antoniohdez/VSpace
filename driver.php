@@ -5,8 +5,6 @@ class dbDriver{
 	
 	function __construct(){
 		$this->conexion=mysqli_connect("localhost","root","","VSpace") or die("Error " . mysqli_error($this->conexion));
-	    //$this->conexion = mysql_connect("localhost", "root", "") or die("Error while connecting the database");
-		//mysql_select_db("VSpace");
 		session_start();
 	}
 	
@@ -51,7 +49,7 @@ class dbDriver{
 		$row = mysqli_fetch_array($query);
 		if($row['password'] == $password){
 			$_SESSION["name"] = $row["name"];
-			$_SESSION["emain"] = $row["email"];
+			$_SESSION["email"] = $row["email"];
 			$_SESSION["user_id"] = $row["user_id"];
 			header('Location: index.php');
 		} else {
