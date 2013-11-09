@@ -1,3 +1,6 @@
+<?php
+	require_once("layout.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +8,7 @@
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
-        Nooply
+        Sign in : Nooply
     </title>
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -17,70 +20,28 @@
 	<![endif]-->
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.php">Nooply</a>
-			</div>
-			<div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-				</ul>            
-                <ul class="nav navbar-nav navbar-right">
-  					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Option 1</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li><a href="#">Log out</a></li>
-                        </ul>
-                    </li>
-				</ul> 
-			</div><!--/.nav-collapse -->
-		</div>
-	</div><!--/.navbar -->
+	<!--/.navbar -->
+	<?php print_header_login()?>
 	<!-- Contenido -->
     <div class="container">
     	<div class="row col-md-6 col-md-offset-3 contenedor">
-	    	<div class="row">
-	    		<div class="center-content">
-					<h3>Create account</h3>
-				</div>
-	    		<form id="signIn" class="form-horizontal" role="form" action="addAccount.php" method="post">
-					<div class="form-group">
-					    <label for="name" class="col-md-3 control-label">Name:</label>
-					    <div class="col-md-9">
-					    	<input type="text" name="name" class="form-control" id="name" required>
-					    </div>
-					</div>
-					<div class="form-group">
-					    <label for="email" class="col-md-3 control-label">Email:</label>
-					    <div class="col-md-9">
-					    	<input type="text" name="email" class="form-control" id="email" required>
-					    </div>
-					</div>
-					<div class="form-group">
-					    <label for="password" class="col-md-3 control-label">Password:</label>
-					    <div class="col-md-9">
-					    	<input type="password" name="password" class="form-control" id="password" required >
-					    </div>
-					</div>
-					<div class="form-group">
-					    <label for="password2" class="col-md-3 control-label">Confirm password:</label>
-					    <div class="col-md-9">
-					    	<input type="password" name="password2" class="form-control" id="password2" required>
-					    </div>
-					</div>
-					<div class="form-group">
-						<div class="col-md-offset-3 col-md-9">
-					    	<button class="btn btn-primary signIn" type="submit" onclick="validateEmail()">Create account</button>
-					    </div>
-					</div>
+	    	<div class="row-fluid">
+		
+	    		<form form action="addAccount.php" enctype="multipart/form-data" id="signIn" class="form-horizontal" role="form"  method="POST">
+					<legend>New account</legend>
+					    <label for="name">Name:</label>
+					    	<input type="text" name="name" class="form-control" id="name" placeholder="Your name" required>
+					    <br>
+					    <label for="email">Email:</label>
+					    	<input type="text" name="email" class="form-control" id="email" placeholder="Your email" required>
+					    <br>
+					    <label for="password">Password:</label>
+					    	<input type="password" name="password" class="form-control" id="password" placeholder="Your password" required >
+					    <br>
+					    <label for="password2">Confirm password:</label>
+					    	<input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm your password" required>
+					    <br>
+					    <button class="btn btn-primary signIn" type="submit" onclick="validateEmail()">Create account</button>
 				</form>
 
 		    	

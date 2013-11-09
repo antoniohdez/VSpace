@@ -44,7 +44,7 @@ class dbDriver{
 	}
 
 	function login($user, $password, $id){
-		//$password = md5($password);
+		$password = md5($password);
 		$query = mysqli_query($this->conexion, "SELECT * from users where email='$user'");			
 		$row = mysqli_fetch_array($query);
 		if($row['password'] == $password){
