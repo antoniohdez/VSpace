@@ -26,7 +26,13 @@
     <div class="container">
     	<div class="row col-md-6 col-md-offset-3 contenedor">
 	    	<div class="row-fluid">
-		
+				<?php
+					if(isset($_GET["error"]) && $_GET["error"] == "1")
+					print '
+					<div id="error" class="alert alert-danger">
+		    			<strong>Oh snap!</strong> Something went wrong.
+		    		</div>';
+	    		?>
 	    		<form form action="addAccount.php" enctype="multipart/form-data" id="signIn" class="form-horizontal" role="form"  method="POST">
 					<legend>New account</legend>
 					    <label for="name">Name:</label>

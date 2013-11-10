@@ -85,7 +85,12 @@ class dbDriver{
 	}
 
 	function addAccount($user, $email, $password){
-		mysqli_query($this->conexion, "INSERT INTO users (name, email, password) VALUES ('$user', '$email', '$password')");
+		if(mysqli_query($this->conexion, "INSERT INTO users (name, email, password) VALUES ('$user', '$email', '$password')")){
+			return "success";
+		}
+		else{
+			return "error";
+		}
 	}
 
 }
