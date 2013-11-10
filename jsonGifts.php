@@ -1,10 +1,11 @@
 <?php
 	$con=mysqli_connect("localhost","root","","VSpace");
+	$id = $_GET["id"];
 	if (mysqli_connect_errno())
   	{
   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
   	}
-	if($result = mysqli_query($con,"SELECT * FROM gifts;"))
+	if($result = mysqli_query($con,"SELECT * FROM gifts where point_id='$id';"))
 	{
 		while($row = $result->fetch_array(MYSQLI_ASSOC)){
 			$query = mysqli_query($con,"SELECT name FROM users where user_id=".$row["user_id"].";");
