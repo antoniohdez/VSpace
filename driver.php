@@ -15,20 +15,20 @@ class dbDriver{
 	function addTag($feeling, $lat, $lng, $msg, $user){
 		if(mysqli_query($this->conexion, "INSERT INTO points (feeling, latitude, longitude, message, user_id) VALUES ('$feeling', '$lat', '$lng', '$msg', '$user')") == FALSE)
 		{
-			return "error";
+			print "error";
 		}
 		else
 		{
-			return "success";
+			print "success";
 		}
 	}
 	
 	function addGift($gift, $msg, $user){
 		if(mysqli_query($this->conexion, "INSERT INTO gifts (gift, message, user_id) VALUES ('$gift', '$msg', '$user')")){
-			return "success";
+			print "success";
 		}
 		else{
-			return "error";
+			print "error";
 		}	
 
 	}

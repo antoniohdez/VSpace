@@ -15,7 +15,7 @@
     $data = $driver->getTag($id);
     $name = $data["user_name"];
     $feeling = $data["feeling"];
-    $user_id = $_SESSION["user_id"];
+    $user_id = 1;
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +44,12 @@
     <div class="container">
             <div class="row col-md-8 col-md-offset-2 contenedor">
                     <div class="row">
+                    	<div id="success" class="alert alert-success" style="display:none">
+			    			<strong>Great!</strong> You have sent a gift.
+			    		</div>
+			    		<div id="error" class="alert alert-danger" style="display:none">
+			    			<strong>Oh snap!</strong> Something went wrong.
+			    		</div>
                             <div class="center-content title">
                                     Give a gift to your friend...
                             </div>
@@ -144,7 +150,19 @@
             },
             success:  function (response) {
                 $("#button").html("Send gift!");
-                alert(response);
+                if(response == "success"){
+                	$(".image-selected").removeClass("image-selected");
+                	$("#message").val("");
+                	$("#error").hide();
+                	$("#success").show();
+                	$("html, body").animate({ scrollTop: 0 }, 600);
+                }
+                else {
+                	$("#success").hide();
+                	$("#error").html(response);
+                	$("#error").show();
+                	$("html, body").animate({ scrollTop: 0 }, 600);
+                }
             }
         });
         }
