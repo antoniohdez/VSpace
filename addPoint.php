@@ -10,5 +10,5 @@
 
 	$user = "1";
 
-	$driver->addTag($feeling, $lat, $lng, $msg, $user);
+	printf($driver->addTag($feeling, $lat, $lng, $msg, $user));
 ?>

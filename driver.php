@@ -4,17 +4,24 @@ class dbDriver{
 	private $conexion;
 	
 	function __construct(){
-	    $this->conexion = mysql_connect("localhost", "root", "") or die("Error while connecting the database");
-		mysql_select_db("vspace");
+		$this->conexion=mysqli_connect("localhost","root","","VSpace") or die("Error " . mysqli_error($this->conexion));
+	    //$this->conexion = mysql_connect("localhost", "root", "") or die("Error while connecting the database");
+		//mysql_select_db("VSpace");
 		session_start();
 	}
 	
 	function __destruct(){
-		mysql_close($this->conexion);
+		mysqli_close($this->conexion);
 	}
 
 	function addTag($feeling, $lat, $lng, $msg, $user){
-		return $query = mysql_query("INSERT INTO points (feeling, latitude, longitude, message, user_id) VALUES ('$feeling', '$lat', '$lng', '$msg', '$user')");
+		if($this->conexion->query("INSERT INTO points (feeling, latitude, longitude, message) VALUES ('$feeling', '$lat', '$lng', '$msg')"))
+		{
+			return "success";
+		}
+		else{
+			return "error";
+		}
 	}
 	
 }
