@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2013 at 12:30 PM
+-- Generation Time: Nov 10, 2013 at 07:03 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -34,7 +34,18 @@ CREATE TABLE IF NOT EXISTS `gifts` (
   `point_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+--
+-- Dumping data for table `gifts`
+--
+
+INSERT INTO `gifts` (`id`, `gift`, `message`, `user_id`, `point_id`) VALUES
+(13, 'beer', 'Chela!', 4, 42),
+(14, 'like', 'chido tu coto', 4, 42),
+(15, 'love', 'h', 4, 42),
+(16, 'hug', 'de', 4, 42),
+(17, 'beer', 'lol', 4, 42);
 
 --
 -- Triggers `gifts`
@@ -63,7 +74,14 @@ CREATE TABLE IF NOT EXISTS `points` (
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=41 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+
+--
+-- Dumping data for table `points`
+--
+
+INSERT INTO `points` (`id`, `feeling`, `latitude`, `longitude`, `message`, `user_id`) VALUES
+(42, 'happy', 20.3696, -102.769, 'happy', 4);
 
 --
 -- Triggers `points`
@@ -91,7 +109,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `points` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `points`) VALUES
+(4, 'Eros EspÃ­nola', 'eros.espinola.gonzalez@gmail.com', '37f62f1363b04df4370753037853fe88', 6);
 
 --
 -- Constraints for dumped tables
