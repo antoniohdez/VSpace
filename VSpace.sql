@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 10, 2013 at 07:03 PM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Servidor: localhost
+-- Tiempo de generación: 10-11-2013 a las 18:13:27
+-- Versión del servidor: 5.1.44
+-- Versión de PHP: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -17,13 +16,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `vspace`
+-- Base de datos: `VSpace`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gifts`
+-- Estructura de tabla para la tabla `gifts`
 --
 
 CREATE TABLE IF NOT EXISTS `gifts` (
@@ -37,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `gifts` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
--- Dumping data for table `gifts`
+-- Volcar la base de datos para la tabla `gifts`
 --
 
 INSERT INTO `gifts` (`id`, `gift`, `message`, `user_id`, `point_id`) VALUES
@@ -48,7 +47,7 @@ INSERT INTO `gifts` (`id`, `gift`, `message`, `user_id`, `point_id`) VALUES
 (17, 'beer', 'lol', 4, 42);
 
 --
--- Triggers `gifts`
+-- (Evento) desencadenante `gifts`
 --
 DROP TRIGGER IF EXISTS `increasePoints`;
 DELIMITER //
@@ -62,29 +61,29 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `points`
+-- Estructura de tabla para la tabla `points`
 --
 
 CREATE TABLE IF NOT EXISTS `points` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `feeling` varchar(20) NOT NULL,
-  `latitude` float NOT NULL,
-  `longitude` float NOT NULL,
+  `latitude` decimal(10,7) NOT NULL,
+  `longitude` decimal(10,7) NOT NULL,
   `message` varchar(140) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=50 ;
 
 --
--- Dumping data for table `points`
+-- Volcar la base de datos para la tabla `points`
 --
 
 INSERT INTO `points` (`id`, `feeling`, `latitude`, `longitude`, `message`, `user_id`) VALUES
-(42, 'happy', 20.3696, -102.769, 'happy', 4);
+(49, 'happy', 36.2178152, -115.1638636, 'Great!', 0);
 
 --
--- Triggers `points`
+-- (Evento) desencadenante `points`
 --
 DROP TRIGGER IF EXISTS `increasePoint`;
 DELIMITER //
@@ -98,7 +97,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
@@ -112,22 +111,18 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `users`
+-- Volcar la base de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`user_id`, `name`, `email`, `password`, `points`) VALUES
 (4, 'Eros EspÃ­nola', 'eros.espinola.gonzalez@gmail.com', '37f62f1363b04df4370753037853fe88', 6);
 
 --
--- Constraints for dumped tables
+-- Filtros para las tablas descargadas (dump)
 --
 
 --
--- Constraints for table `gifts`
+-- Filtros para la tabla `gifts`
 --
 ALTER TABLE `gifts`
   ADD CONSTRAINT `gifts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
