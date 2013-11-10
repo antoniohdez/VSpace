@@ -25,7 +25,7 @@
 <body>
 	<!--/.navbar -->
 	<?php
-		print_header_login();
+		print_header();
 		$row = $driver->getUser($id);
 	?>
 	<!-- Contenido -->
