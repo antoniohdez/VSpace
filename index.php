@@ -110,10 +110,16 @@
 
     function sendForm(){
 		if(feeling === ""){
-			alert("Select an \"I'm feeling\" option.");
+			$("#error").show();
+			$("#error").html("Select an I\'m feeling option.");
+			$("html, body").animate({ scrollTop: 0 }, 600);
+			//alert("Select an \"I'm feeling\" option.");
 		}
 		else if(latitude === "" || longitude === ""){
-			alert("We couldn't find your location.");
+			$("#error").show();
+			$("#error").html("We couldn't find your location.");
+			$("html, body").animate({ scrollTop: 0 }, 600);
+			//alert("We couldn't find your location.");
 		}
 		else{
 			var parametros = {
@@ -134,13 +140,16 @@
 	                if(response == "error"){
 
 	                	$("#success").hide();
+	                	$("#error").html("Error");
 	                	$("#error").show();
+	                	$("html, body").animate({ scrollTop: 0 }, 600);
 	                }
 	                else if(response == "success"){
 	                	$(".image-selected").removeClass("image-selected");
 	                	$("#message").val("");
 	                	$("#error").hide();
 	                	$("#success").show();
+	                	$("html, body").animate({ scrollTop: 0 }, 600);
 	                }
 	            }
 	        });
