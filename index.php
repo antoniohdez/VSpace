@@ -71,8 +71,18 @@
 			    		
 		    		</span>
 		    	</div>
+		    	
 	    	</div>
 	    	<!--/row imagenes-->
+	    	<div class="row">
+		    	<div id="container-images" class="col-md-12 center-content">
+			    	<div class="form-group">
+						    <div class="col-lg-10 col-lg-offset-1">
+						        <input type="text" class="form-control" id="message" placeholder="Message">
+						    </div>
+						</div>
+			    	</div>
+			    </div>
 	    	<div class="row">
 	    		<div class="col-md-12">
 	    			<span>
@@ -118,8 +128,9 @@
 		else{
 			var parametros = {
 				"feeling" : feeling,
-				"latitude" : latitude,
-				"longitude" : longitude
+				"latitude" : marker.getPosition().lat(),
+				"longitude" : marker.getPosition().lng(),
+				"message" : $("#message").val()
 			}
 			$.ajax({
 	            data: parametros,
