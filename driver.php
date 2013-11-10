@@ -13,8 +13,8 @@ class dbDriver{
 		mysql_close($this->conexion);
 	}
 
-	function addTag($feeling, $lat, $lng, $msg){
-		return $query = mysql_query("INSERT INTO points (feeling, latitude, longitude, message) VALUES ('$feeling', '$lat', '$lng', '$msg')");
+	function addTag($feeling, $lat, $lng, $msg, $user){
+		return $query = mysql_query("INSERT INTO points (feeling, latitude, longitude, message, user_id) VALUES ('$feeling', '$lat', '$lng', '$msg', '$user')");
 	}
 	
 }
