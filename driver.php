@@ -23,7 +23,12 @@ class dbDriver{
 	}
 	
 	function addGift($gift, $msg, $user){
-		return $query = mysqli_query($this->conexion, "INSERT INTO gifts (gift, message, user_id) VALUES ('$gift', '$msg', '$user')");
+		if(mysqli_query($this->conexion, "INSERT INTO gifts (gift, message, user_id) VALUES ('$gift', '$msg', '$user')")){
+			return "success";
+		}
+		else{
+			return "error";
+		}	
 	}
 
 	function getTag($id){
@@ -43,15 +48,17 @@ class dbDriver{
 		return $array;
 	}
 
+	function getTags($id){
+		$query = mysqli_query($this->conexion, "SELECT * FROM users NATURAL JOIN points WHERE points.user_id='$id'");
+		return $query;
+	}
+
 	function getUser($id){
-		$query = mysqli_query($this->conexion, "SELECT * FROM users WHERE id='$id'");
-		$row=mysqli_fetch_array($query);
-		$array = array(
-			"user_id" => $row['user_id'],
-			"name" => $row['name'],
-			"email" => $row['email'],
-		);
-		return $array;
+		if($query = mysqli_query($this->conexion, "SELECT * FROM users WHERE user_id='$id'")){
+			$row = mysqli_fetch_array($query);
+			return $row;
+		}
+		
 	}
 
 	function login($user, $password, $id){
