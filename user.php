@@ -2,6 +2,7 @@
 	require_once("layout.php");
 	require_once("driver.php");
 	$driver = new dbDriver();
+	$id = $_SESSION["user_id"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
 	
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>
-        Sign in : Nooply
+        User : Nooply
     </title>
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.css" rel="stylesheet">
@@ -25,13 +26,14 @@
 	<!--/.navbar -->
 	<?php
 		print_header_login();
-		$row = $driver->getUser(1);
+		$row = $driver->getUser($id);
 	?>
 	<!-- Contenido -->
     <div class="container">
     	<div class="row col-md-6 col-md-offset-3 contenedor">
 	    	<div class="row-fluid">
 	    		<form class="form-horizontal" role="form" action="SeleccionMaterias.php" method="get">
+	    			<legend>User</legend>
 				  	<div class="form-group">
 				    	<label for="name" class="col-md-3 control-label">Name:</label>
 				    	<div class="col-md-9">
@@ -44,8 +46,14 @@
 				      		<p class="form-control-static"><?php printf($row['email']); ?></p>
 				    	</div>
 					</div>
+					<div class="form-group">
+				    	<label for="name" class="col-md-3 control-label">Karma:</label>
+				    	<div class="col-md-9">
+				      		<p class="form-control-static"><?php printf($row["points"]); ?></p>
+				    	</div>
+				  	</div>
 					<?php
-					$data = $driver->getTags(1);
+					$data = $driver->getTags($id);
 					print '
 						<table class="table table-hover">
                         	<thead>
