@@ -5,6 +5,18 @@ var latitude = "";
 var longitude = "";
 var marker;
 
+function openInfoWindow() {
+    var markerLatLng = marker.getPosition();
+    infowindow.setContent([
+        'The current position is: ',
+        markerLatLng.lat(),
+        ', ',
+        markerLatLng.lng()
+    ].join(''));
+    infowindow.open(map, marker);
+}
+
+
 function initialize() {
 	//myLatlng = new google.maps.LatLng(-33.877, 151.244);
 	var mapOptions = {
@@ -37,6 +49,17 @@ function initialize() {
       		latitude = myLatlng.lat()
       		longitude = myLatlng.lng();
     	map.setCenter(myLatlng);
+      setTimeout(function(){
+        //var markerLatLng = window.marker.getPosition();
+        
+        infowindow = new google.maps.InfoWindow({
+        maxWidth: 200
+        });
+        google.maps.event.addListener(marker, 'mouseup', function() {
+          openInfoWindow();
+        });
+      }, 1000);
+
     	}, function() {
       		handleNoGeolocation(true);
     	});

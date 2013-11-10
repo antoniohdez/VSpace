@@ -48,6 +48,14 @@
     <div class="container">
     	<div class="row col-md-8 col-md-offset-2 contenedor">
 	    	<div class="row">
+	    		<div id="success" class="alert alert-success" style="display:none">
+	    			Punto registrado
+	    		</div>
+	    		<div id="error" class="alert alert-danger" style="display:none">
+	    			Error
+	    		</div>
+
+
 	    		<div class="center-content title">
 	    			I'm feeling...
 	    		</div>
@@ -85,10 +93,8 @@
 			    </div>
 	    	<div class="row">
 	    		<div class="col-md-12">
-	    			<span>
-	    				You are here:
-	    			</span>
-	    			<div id="map" style="height: 400px;" />
+
+	    			<div id="map" style="height: 400px; margin-top: 20px;" />
 
 	    		</div>		
 		    </div>
@@ -109,8 +115,11 @@
     <script type="text/javascript" src="js/map.js">
     </script>
     <script type="text/javascript">
+    $("#error").hide();
+	$("#success").hide();
 	//Obtiene la imagen seleccionada
 	$(document).ready(function(){
+		
 		$(".image").click(function(){
 		$(".image-selected").removeClass("image-selected");
 		$(this).addClass("image-selected");
@@ -141,7 +150,18 @@
 	            },
 	            success:  function (response) {
 	                $("#button").html("Done!");
-	                alert(response);
+	                if(response == "error"){
+
+	                	$("#success").hide();
+	                	$("#error").show();
+	                }
+	                else if(response == "success"){
+	                	$(".image-selected").removeClass("image-selected");
+	                	$("#message").val("");
+	                	$("#error").hide();
+	                	$("#success").show();
+	                }
+	                //alert(response);
 	            }
 	        });
 		}

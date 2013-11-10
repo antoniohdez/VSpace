@@ -8,14 +8,14 @@
 	// Check connection
 	if (mysqli_connect_errno())
   	{
-  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  		printf("error");
   	}
 	if(mysqli_query($con,"INSERT INTO points (feeling, latitude, longitude, message) VALUES ('$f', '$lat', '$lng', '$msg')"))
 	{
-		printf("Punto registrado!");
+		printf("success");
 	}
 	else{
-		printf("Error");
+		printf("error");
 	}
 	mysqli_close($con);
 ?>
