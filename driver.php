@@ -33,7 +33,7 @@ class dbDriver{
 		$row=mysqli_fetch_array($query);
 		$query_user = mysqli_query($this->conexion, "SELECT name FROM users NATURAL JOIN points WHERE points.id='$id'");
 		$row_user=mysqli_fetch_array($query_user);
-		$array = [
+		$array = array(
 			"id" => $row['id'],
 			"feeling" => $row['feeling'],
 			"latitude" => $row['latitude'],
@@ -41,8 +41,12 @@ class dbDriver{
 			"message" => $row['message'],
 			"user_id" => $row['user_id'],
 			"user_name" => $row_user['name'],
-		];
+		);
 		return $array;
+	}
+
+	function addAccount($user, $email, $password){
+		mysqli_query($this->conexion, "INSERT INTO users (name, email, password) VALUES ('$user', '$email', '$password')");
 	}
 
 }
