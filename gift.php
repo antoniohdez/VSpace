@@ -31,50 +31,38 @@
                 <ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
 				</ul>            
-                <ul class="nav navbar-nav navbar-right">
-  					<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Options <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Option 1</a></li>
-                            <li role="presentation" class="divider"></li>
-                            <li><a href="#">Log out</a></li>
-                        </ul>
-                    </li>
-				</ul> 
+                
 			</div><!--/.nav-collapse -->
 		</div>
-	</div><!--/.navbar -->
+	</div>
+	<!--/.navbar -->
+
 	<!-- Contenido -->
     <div class="container">
     	<div class="row col-md-8 col-md-offset-2 contenedor">
 	    	<div class="row">
-	    		<div id="success" class="alert alert-success" style="display:none">
-	    			Punto registrado
-	    		</div>
-	    		<div id="error" class="alert alert-danger" style="display:none">
-	    			Error
-	    		</div>
-
-
 	    		<div class="center-content title">
-	    			I'm feeling...
+	    			Give a gift to your friend...
 	    		</div>
 		    	<div id="container-images" class="col-md-12 center-content">
 		    		<span class="width-auto">
-			    		<span id="happy" class="image">
-							<img src="img/images/happy.png" alt="Happy">
+			    		<span id="beer" class="image">
+							<img src="img/images/happy.png" alt="Beer">
 			    		</span>
-			    		<span id="sad" class="image">
-			    			<img src="img/images/sad.png" alt="Sad">
+			    		<span id="heart" class="image">
+			    			<img src="img/images/sad.png" alt="Heart">
 			    		</span>
-			    		<span id="annoyed" class="image">
-			    			<img src="img/images/annoyed.png" alt="Annoyed">
+			    		<span id="icecream" class="image">
+			    			<img src="img/images/annoyed.png" alt="Ice cream">
 			    		</span>
-			    		<span id="bored" class="image">
-			    			<img src="img/images/bored.png" alt="Bored">
+			    		<span id="like" class="image">
+			    			<img src="img/images/bored.png" alt="Like">
 			    		</span>
-			    		<span id="tired" class="image">
-			    			<img src="img/images/tired.png" alt="Tired">
+			    		<span id="coffee" class="image">
+			    			<img src="img/images/tired.png" alt="Coffee">
+			    		</span>
+			    		<span id="hug" class="image">
+			    			<img src="img/images/tired.png" alt="Hug">
 			    		</span>
 			    		
 		    		</span>
@@ -92,11 +80,7 @@
 			    	</div>
 			    </div>
 	    	<div class="row">
-	    		<div class="col-md-12">
-
-	    			<div id="map" style="height: 400px; margin-top: 20px;" />
-
-	    		</div>		
+	    		<!-- -->	
 		    </div>
 		    <div class="row">
 		    	<div class="col-md-4 col-md-offset-4">
@@ -115,11 +99,8 @@
     <script type="text/javascript" src="js/map.js">
     </script>
     <script type="text/javascript">
-    $("#error").hide();
-	$("#success").hide();
 	//Obtiene la imagen seleccionada
 	$(document).ready(function(){
-		
 		$(".image").click(function(){
 		$(".image-selected").removeClass("image-selected");
 		$(this).addClass("image-selected");
@@ -150,18 +131,7 @@
 	            },
 	            success:  function (response) {
 	                $("#button").html("Done!");
-	                if(response == "error"){
-
-	                	$("#success").hide();
-	                	$("#error").show();
-	                }
-	                else if(response == "success"){
-	                	$(".image-selected").removeClass("image-selected");
-	                	$("#message").val("");
-	                	$("#error").hide();
-	                	$("#success").show();
-	                }
-	                //alert(response);
+	                alert(response);
 	            }
 	        });
 		}
