@@ -13,12 +13,13 @@ class dbDriver{
 	}
 
 	function addTag($feeling, $lat, $lng, $msg, $user){
-		if(mysqli_query($this->conexion, "INSERT INTO points (feeling, latitude, longitude, message) VALUES ('$feeling', '$lat', '$lng', '$msg')"))
+		if(mysqli_query($this->conexion, "INSERT INTO points (feeling, latitude, longitude, message, user_id) VALUES ('$feeling', '$lat', '$lng', '$msg', '$user')") == FALSE)
+		{
+			return "error";
+		}
+		else
 		{
 			return "success";
-		}
-		else{
-			return "error";
 		}
 	}
 	
@@ -29,6 +30,7 @@ class dbDriver{
 		else{
 			return "error";
 		}	
+
 	}
 
 	function getTag($id){

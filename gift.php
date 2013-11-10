@@ -15,6 +15,7 @@
     $data = $driver->getTag($id);
     $name = $data["user_name"];
     $feeling = $data["feeling"];
+    $user_id = $_SESSION["user_id"];
 ?>
 
 <!DOCTYPE html>
@@ -86,6 +87,12 @@
                                                     <div class="col-lg-10 col-lg-offset-1">
                                                         <input type="text" class="form-control" id="message" placeholder="Message">
                                                     </div>
+                                                    <div class="col-lg-10 col-lg-offset-1">
+                                                        <input type="text" class="form-control" value="<?php echo $user_id?>" style="display: none;" id="user_id" placeholder="Message">
+                                                    </div>
+                                                    <div class="col-lg-10 col-lg-offset-1">
+                                                        <input type="text" class="form-control" value="<?php echo $id?>" style="display: none;" id="id" placeholder="Message">
+                                                    </div>
                                                 </div>
                                     </div>
                             </div>
@@ -117,28 +124,31 @@
         });
 
     function sendForm(){
-                if(gift === ""){
-                        alert("Select an \"gift\" option.");
-                }
-                else{
-                        var parametros = {
-                                "gift" : gift,
-                                "message" : $("#message").val()
-                        }
-                        $.ajax({
-                    data: parametros,
-                    url: 'addGift.php',
-                    type: 'post',
-                    beforeSend: function () {
-                        $("#button").html("Saving gift...");
-                    },
-                    success:  function (response) {
-                        $("#button").html("Send gift!");
-                        alert(response);
-                    }
-                });
-                }
+        if(gift === ""){
+                alert("Select a gift.");
         }
+        else{
+                var parametros = {
+                        "gift" : gift,
+                        "message" : $("#message").val(),
+                        "user_id" : $("#user_id").val(),
+                        "id" : $("#id").val()
+
+                }
+                $.ajax({
+            data: parametros,
+            url: 'addGift.php',
+            type: 'post',
+            beforeSend: function () {
+                $("#button").html("Sending gift...");
+            },
+            success:  function (response) {
+                $("#button").html("Send gift!");
+                alert(response);
+            }
+        });
+        }
+    }
         </script>
 </body>
 </html>
