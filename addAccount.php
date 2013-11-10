@@ -5,11 +5,13 @@
 	if($_POST['password'] === $_POST['password2']){
 		if($driver->addAccount($_POST['name'], $_POST['email'], md5($_POST['password'])) == "success"){
 			$driver->login($_POST["email"], $_POST["password"], 0);
+			header("Location: index.php");
 		}
 		else{
 			header("Location: signIn.php?error=1");
 		}
+	}else{
+		header("Location: signIn.php?error=1");
 	}
-
-	header("Location: index.php");
+	
 ?>
