@@ -15,7 +15,7 @@
     $data = $driver->getTag($id);
     $name = $data["user_name"];
     $feeling = $data["feeling"];
-    $user_id = 1;
+    $user_id = $_SESSION["user_id"];
 ?>
 
 <!DOCTYPE html>
@@ -159,7 +159,6 @@
                 }
                 else {
                 	$("#success").hide();
-                	$("#error").html(response);
                 	$("#error").show();
                 	$("html, body").animate({ scrollTop: 0 }, 600);
                 }

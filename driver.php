@@ -23,8 +23,8 @@ class dbDriver{
 		}
 	}
 	
-	function addGift($gift, $msg, $user){
-		if(mysqli_query($this->conexion, "INSERT INTO gifts (gift, message, user_id) VALUES ('$gift', '$msg', '$user')")){
+	function addGift($gift, $msg, $user, $point_id){
+		if(mysqli_query($this->conexion, "INSERT INTO gifts (gift, message, user_id, point_id) VALUES ('$gift', '$msg', '$user', '$point_id')")){
 			print "success";
 		}
 		else{
