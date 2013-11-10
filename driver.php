@@ -15,7 +15,7 @@ class dbDriver{
 	}
 
 	function addTag($feeling, $lat, $lng, $msg, $user){
-		if($this->conexion->query("INSERT INTO points (feeling, latitude, longitude, message) VALUES ('$feeling', '$lat', '$lng', '$msg')"))
+		if(mysqli_query($this->conexion, "INSERT INTO points (feeling, latitude, longitude, message) VALUES ('$feeling', '$lat', '$lng', '$msg')"))
 		{
 			return "success";
 		}
@@ -25,14 +25,14 @@ class dbDriver{
 	}
 	
 	function addGift($gift, $msg, $user){
-		return $query = mysql_query("INSERT INTO gifts (gift, message, user_id) VALUES ('$gift', '$msg', '$user')");
+		return $query = mysqli_query($this->conexion, "INSERT INTO gifts (gift, message, user_id) VALUES ('$gift', '$msg', '$user')");
 	}
 
 	function getTag($id){
-		$query = mysql_query("SELECT * FROM points WHERE id='$id'");
-		$row=mysql_fetch_array($query);
-		$query_user = mysql_query("SELECT name FROM users NATURAL JOIN points WHERE points.id='$id'");
-		$row_user=mysql_fetch_array($query_user);
+		$query = mysqli_query($this->conexion, "SELECT * FROM points WHERE id='$id'");
+		$row=mysqli_fetch_array($query);
+		$query_user = mysqli_query($this->conexion, "SELECT name FROM users NATURAL JOIN points WHERE points.id='$id'");
+		$row_user=mysqli_fetch_array($query_user);
 		$array = [
 			"id" => $row['id'],
 			"feeling" => $row['feeling'],
